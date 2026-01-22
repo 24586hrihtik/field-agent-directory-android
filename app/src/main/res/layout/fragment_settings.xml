@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="16dp">
+
+    <Switch
+        android:id="@+id/switchOffline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Offline Only Mode"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <Switch
+        android:id="@+id/switchAutoRefresh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Background Auto-Refresh"
+        app:layout_constraintTop_toBottomOf="@id/switchOffline"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="16dp"/>
+
+    <TextView
+        android:id="@+id/tvNetworkStatus"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Network: Unknown"
+        app:layout_constraintTop_toBottomOf="@id/switchAutoRefresh"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="16dp"/>
+
+    <TextView
+        android:id="@+id/tvLastRefresh"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Last refresh: Never"
+        app:layout_constraintTop_toBottomOf="@id/tvNetworkStatus"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="8dp"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

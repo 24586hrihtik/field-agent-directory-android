@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     kotlin("kapt")
+    id("androidx.navigation.safeargs.kotlin") // Add SafeArgs plugin here
 }
 
 android {
@@ -75,8 +76,11 @@ dependencies {
 
 // Image loading
     implementation(libs.coil)
+    implementation(libs.androidx.fragment.ktx)
+
 
 // WorkManager
     implementation(libs.androidx.work.runtime.ktx)
-
+    implementation(libs.androidx.navigation.fragment.ktx)
+    implementation(libs.androidx.navigation.ui.ktx)
 }

@@ -3,10 +3,10 @@ package com.hrithik.fieldagentdirectory.data.local.entity
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "users")
-data class UserEntity(
+@Entity(tableName = "posts")
+data class PostEntity(
     @PrimaryKey val id: Int,
-    val firstName: String,
-    val lastName: String,
-    val email: String,
+    val userId: Int,
+    val title: String,
+    val body: String
 )

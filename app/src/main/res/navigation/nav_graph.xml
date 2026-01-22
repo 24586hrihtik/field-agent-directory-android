@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/agentListFragment">
+
+    <fragment
+        android:id="@+id/agentListFragment"
+        android:name="com.hrithik.fieldagentdirectory.ui.agent_list.AgentListFragment"
+        android:label="Agent Directory">
+        <action
+            android:id="@+id/action_agentList_to_agentProfile"
+            app:destination="@id/agentProfileFragment"
+            />
+    </fragment>
+
+    <fragment
+        android:id="@+id/agentProfileFragment"
+        android:name="com.hrithik.fieldagentdirectory.ui.agent_profile.AgentProfileFragment"
+        android:label="Agent Profile">
+        <argument
+            android:name="userId"
+            app:argType="integer"
+            android:defaultValue="0"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.hrithik.fieldagentdirectory.ui.settings.SettingsFragment"
+        android:label="Settings" />
+</navigation>

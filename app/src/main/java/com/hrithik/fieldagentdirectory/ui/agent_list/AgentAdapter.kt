@@ -1,44 +1,41 @@
 package com.hrithik.fieldagentdirectory.ui.agent_list
+
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import coil.load
 import com.hrithik.fieldagentdirectory.data.local.entity.UserEntity
 import com.hrithik.fieldagentdirectory.databinding.ItemAgentBinding
 
-class AgentAdapter :
-    PagingDataAdapter<UserEntity, AgentAdapter.AgentViewHolder>(DIFF) {
+class AgentAdapter(
+    private val onClick: (UserEntity) -> Unit
+) : PagingDataAdapter<UserEntity, AgentAdapter.AgentViewHolder>(DiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AgentViewHolder {
-        val binding = ItemAgentBinding.inflate(
-            LayoutInflater.from(parent.context),
-            parent,
-            false
-        )
+        val binding = ItemAgentBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return AgentViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: AgentViewHolder, position: Int) {
-        getItem(position)?.let(holder::bind)
+        val user = getItem(position)
+        if (user != null) holder.bind(user)
     }
 
-    class AgentViewHolder(
-        private val binding: ItemAgentBinding
-    ) : RecyclerView.ViewHolder(binding.root) {
-
+    inner class AgentViewHolder(private val binding: ItemAgentBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(user: UserEntity) {
-            binding.name.text = "${user.firstName} ${user.lastName}"
-            binding.email.text = user.email
-            binding.avatar.load(user.image)
+            binding.tvName.text = "${user.firstName} ${user.lastName}"
+            binding.tvEmail.text = user.email
+            binding.root.setOnClickListener { onClick(user) }
         }
     }
 
-    companion object {
-        val DIFF = object : DiffUtil.ItemCallback<UserEntity>() {
-            override fun areItemsTheSame(a: UserEntity, b: UserEntity) = a.id == b.id
-            override fun areContentsTheSame(a: UserEntity, b: UserEntity) = a == b
-        }
+    class DiffCallback : DiffUtil.ItemCallback<UserEntity>() {
+        override fun areItemsTheSame(oldItem: UserEntity, newItem: UserEntity) =
+            oldItem.id == newItem.id
+
+        override fun areContentsTheSame(oldItem: UserEntity, newItem: UserEntity) =
+            oldItem == newItem
     }
 }
